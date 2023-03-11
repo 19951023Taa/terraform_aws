@@ -9,6 +9,11 @@ terraform {
       version = "~> 4.0"
     }
   }
+  backend "s3" {
+    bucket = "terraform.s3.tfstate"
+    key    = "terraform-dev.tfstate"
+    region = "ap-northeast-1"
+  }
 }
 
 # ---------------------------
