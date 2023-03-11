@@ -9,3 +9,11 @@ resource "aws_vpc" "this" {
     "Name" = "${var.project}-${var.env}-vpc"
   }
 }
+
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    "Name" = "${var.project}-${var.env}-igw"
+  }
+}
