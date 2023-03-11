@@ -1,0 +1,2 @@
+project = "terraform"
+env = "dev"
