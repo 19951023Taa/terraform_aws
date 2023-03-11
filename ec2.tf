@@ -9,7 +9,8 @@ resource "aws_instance" "app" {
     aws_security_group.opp_sg.id
   ]
 
-  key_name = aws_key_pair.this.key_name
+  iam_instance_profile = aws_iam_instance_profile.app_ec2_profile.name
+  key_name             = aws_key_pair.this.key_name
 
   tags = {
     "Name" = "${var.project}-${var.env}-app-ec2"
