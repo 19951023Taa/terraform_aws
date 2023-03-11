@@ -5,3 +5,7 @@ variable "project" {
 variable "env" {
   type = string
 }
+
+variable "rdspass" {
+  type = string
+}
