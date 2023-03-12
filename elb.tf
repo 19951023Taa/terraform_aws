@@ -27,6 +27,18 @@ resource "aws_lb_listener" "lb_listener_http" {
   }
 }
 
+resource "aws_lb_listener" "lb_listener_https" {
+  load_balancer_arn = aws_lb.this.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = aws_acm_certificate.this_tokyo.arn
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.this.arn
+  }
+}
+
 resource "aws_lb_target_group" "this" {
   name     = "${var.project}-${var.env}-app-tg"
   port     = 80
