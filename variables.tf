@@ -9,3 +9,7 @@ variable "env" {
 variable "rdspass" {
   type = string
 }
+
+variable "domain" {
+  type = string
+}
