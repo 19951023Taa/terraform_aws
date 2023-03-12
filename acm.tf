@@ -35,3 +35,20 @@ resource "aws_acm_certificate_validation" "this" {
   certificate_arn         = aws_acm_certificate.this_tokyo.arn
   validation_record_fqdns = [for k in aws_route53_record.this_cname : k.fqdn]
 }
+
+resource "aws_acm_certificate" "this_verginia" {
+  provider          = aws.verginia
+  domain_name       = "*.${var.domain}"
+  validation_method = "DNS"
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  depends_on = [
+    aws_route53_zone.this
+  ]
+
+  tags = {
+    "Name" = "${var.project}-${var.env}-verginia-acm"
+  }
+}
