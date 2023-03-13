@@ -52,3 +52,16 @@ resource "aws_acm_certificate" "this_verginia" {
     "Name" = "${var.project}-${var.env}-verginia-acm"
   }
 }
+
+
+##### moduleを別リージョンに作成するTEST #####
+
+# module "acm" {
+#   source = "./test_module/"
+#   providers = {
+#     aws = aws.verginia
+#   }
+  
+#   domain_name       = "bakebaketest.com"
+#   validation_method = "DNS"
+#  } 
