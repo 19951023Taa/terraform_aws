@@ -8,9 +8,8 @@ aws ec2 describe-images --image-ids ami-030cf0a1edb8636ab
 
 
 gpg key
-1. gpg --gen-key
-masternameとaddresを設定
-2. gpg --list-keys 作成したキーの確認
-3. 作成したuserのpassをoutputさせてファイルに保存する
-4. cat password.txt | base64 -d | gpg -r master --decrypt
-passが複合化される
+1. gpg -o master.public.gpg --export master ※gpg公開鍵の作成
+2. resource "aws_iam_user_login_profile"側で作成したキーを指定(filebase64で読み込む)
+3. outputさせる  value = aws_iam_user_login_profile.this.encrypted_password
+4. outputさせたファイルを適当なファイルに保存する
+5. cat [userpass.txt] | base64 -d | gpg -r master --decrypt

@@ -61,7 +61,7 @@ resource "aws_acm_certificate" "this_verginia" {
 #   providers = {
 #     aws = aws.verginia
 #   }
-  
+
 #   domain_name       = "bakebaketest.com"
 #   validation_method = "DNS"
 #  } 
